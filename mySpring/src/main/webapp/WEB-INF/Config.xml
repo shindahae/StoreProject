@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration><!-- DB설정(Connection) -->
+
+	<typeAliases>
+		<typeAlias type="sist.com.vo.BmProductBean" alias="bmproduct" />
+		<typeAlias type="sist.com.vo.BmEventBean" alias="bmevent" />
+		<typeAlias type="sist.com.vo.BmCartBean" alias="bmcart" />
+		<typeAlias type="sist.com.vo.BmCartListBean" alias="bmcartlist" />
+	</typeAliases>
+
+	<mappers>
+		<mapper resource="sist/com/dao/bmstore.xml" />
+	</mappers>
+</configuration>
