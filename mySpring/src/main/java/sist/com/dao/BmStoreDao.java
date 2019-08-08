@@ -14,6 +14,7 @@ import sist.com.vo.BmCartListBean;
 import sist.com.model.CardBean;
 import sist.com.model.ProductBean;*/
 import sist.com.vo.BmEventBean;
+import sist.com.vo.BmOrderBean;
 import sist.com.vo.BmProductBean;
 
 @Repository(value = "bmDao")
@@ -87,14 +88,26 @@ public class BmStoreDao extends SqlSessionDaoSupport {
 		map.put("cartamount", cartamount);
 		this.getSqlSession().update("cartmodify", map);
 	}
-	
+
 	// 장바구니 목록 비우기
-	public void alldelete(String ownerno){
-		this.getSqlSession().delete("alldelete",ownerno);
+	public void alldelete(String ownerno) {
+		this.getSqlSession().delete("alldelete", ownerno);
 	}
-	
-	// 장바구니 목록 비우기
-		public void checkdelete(String productcode){
-			this.getSqlSession().delete("checkdelete",productcode);
+
+	// 장바구니 선택 삭제
+	public void checkdelete(String productcode) {
+		this.getSqlSession().delete("checkdelete", productcode);
+	}
+
+	// [1] 장바구니 가져오기
+	public BmCartBean selectcart(String productcode) {
+		return this.getSqlSession().selectOne("selectcart", productcode);
+	}
+
+	// [2]장바구니 선택 주문
+	public void checkorder(List<BmOrderBean> list) {
+		for (int i = 0; i < list.size(); i++) {
+			this.getSqlSession().insert("checkorder", list.get(i));
 		}
+	}
 }

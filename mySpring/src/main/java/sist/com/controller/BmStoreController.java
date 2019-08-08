@@ -28,6 +28,7 @@ import sist.com.dao.BmStoreDao;
 import sist.com.vo.BmCartBean;
 import sist.com.vo.BmCartListBean;
 import sist.com.vo.BmEventBean;
+import sist.com.vo.BmOrderBean;
 import sist.com.vo.BmProductBean;
 
 @RestController
@@ -335,11 +336,27 @@ public class BmStoreController {
 	public void alldelete(String ownerno) {
 		dao.alldelete(ownerno);
 	}
-	
+
 	// 장바구니 선택 삭제(cart.jsp)
 	@RequestMapping(value = "checkdelete.do")
 	public void checkdelete(String productcode) {
 		dao.checkdelete(productcode);
 	}
 
+	// 장바구니 선택 주문(cart.jsp)
+	@RequestMapping(value = "checkorder.do")
+	public void checkorder(@RequestParam(value = "valueArrTest[]") List<String> checkList) {
+		List<BmOrderBean> orderlist = new ArrayList<BmOrderBean>();
+		for (int i = 0; i < checkList.size(); i++) {
+			BmCartBean cartbean = dao.selectcart(checkList.get(i));
+			BmOrderBean orderbean = new BmOrderBean();
+			orderbean.setOwnerno(cartbean.getOwnerno());
+			orderbean.setProductcode(cartbean.getProductcode());
+			orderbean.setOrderamount(cartbean.getCartamount());
+			orderlist.add(orderbean);
+			dao.checkdelete(cartbean.getProductcode());
+		}
+		dao.checkorder(orderlist);
+		
+	}
 }

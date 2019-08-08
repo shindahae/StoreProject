@@ -120,10 +120,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 
 	<delete id="alldelete" parameterType="java.lang.String">
-		DELETE FROM BMCART WHERE OWNERNO=#{ownerno}
+		DELETE FROM BMCART WHERE
+		OWNERNO=#{ownerno}
 	</delete>
-	
+
 	<delete id="checkdelete" parameterType="java.lang.String">
-		DELETE FROM BMCART WHERE PRODUCTCODE=#{productcode}
+		DELETE FROM BMCART WHERE
+		PRODUCTCODE=#{productcode}
 	</delete>
+
+	<select id="selectcart" parameterType="java.lang.String" resultType="bmcart">
+		SELECT
+		NO,CARTDATE,OWNERNO,PRODUCTCODE,CARTAMOUNT
+		FROM BMCART WHERE
+		PRODUCTCODE=#{productcode}
+	</select>
+
+	<insert id="checkorder" parameterType="bmorder">
+		<selectKey keyProperty="no" order="BEFORE" resultType="int">
+			SELECT SEQ_ORDERLIST_ORDERNO.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO ORDERLIST
+		VALUES(#{no},SYSDATE,#{ownerno},#{productcode},#{orderamount},'배송준비중')
+	</insert>
 </mapper>

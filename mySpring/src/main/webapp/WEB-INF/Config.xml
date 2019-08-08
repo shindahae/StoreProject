@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<typeAlias type="sist.com.vo.BmEventBean" alias="bmevent" />
 		<typeAlias type="sist.com.vo.BmCartBean" alias="bmcart" />
 		<typeAlias type="sist.com.vo.BmCartListBean" alias="bmcartlist" />
+		<typeAlias type="sist.com.vo.BmOrderBean" alias="bmorder" />
 	</typeAliases>
 
 	<mappers>

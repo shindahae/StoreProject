@@ -114,44 +114,43 @@
 			}
 		});
 	}
-	// 장바구니 선택 주문
-	function checkorder(productcode) {
-		$.ajax({
-			url : '/web/checkorder.do',
-			data : 'productcode=' + productcode,
-			type : 'post',
-			success : function() {
-
-			},
-			error : function(request, status) {
-				alert("code=" + request.status);
-			}
-		});
-	}
 
 	$(function() {
-		/*
-		 $("input[type=button]#orderbt").click(function(){//선택 주문하기
-		  var tempId='';
-		  $("input[type=checkbox]:checked").each(function(index,dom){
-			  tempId+=dom.id+'-';//체크박스 선택한 애들 id에 담긴 no값 합쳐줌,#으로 붙여서 가면 첫번째 값만 들어간다....#으로 붙여서 가면안된다...
-		  });
-		  
-		  window.location.href="/web/orderPageMove.do?tempId="+tempId+"&page=2";
-		 }); */
+		//선택삭제
+		$("input[type=button]#checkdelete").click(function() {
+			if ($(":checkbox[name='ckb']:checked").length == 0) {
+				alert("삭제할 항목을 하나이상 체크해주세요.");
+			} else {
+				$("input[type=checkbox]:checked").each(function(index, dom) {
+					checkdelete(dom.id);
+				})
+			}
+		});
 
 		//선택주문
 		$("input[type=button]#checkorder").click(function() {
-			$("input[type=checkbox]:checked").each(function(index, dom) {
+			if ($(":checkbox[name='ckb']:checked").length == 0) {
+				alert("주문할 항목을 하나이상 체크해주세요.");
+			} else {
+				var checkList=[];
+				$("input[type=checkbox]:checked").each(function(index, dom) {
+					checkList.push(dom.id);
+				})
+				$.ajax({
+					url:'/web/checkorder.do',
+					type:'post',
+					dataType:'text',
+					data:{valueArrTest:checkList},
+					success : function() {
+						//location.href='/web/mypage.do?';
+					},
+					error : function(request, status) {
+						alert("code=" + request.status);
+					}
+				});
+			}
 
-			})
-		})
-		//선택삭제
-		$("input[type=button]#checkdelete").click(function() {
-			$("input[type=checkbox]:checked").each(function(index, dom) {
-				checkdelete(dom.id);
-			})
-		})
+		});
 
 	});
 </script>

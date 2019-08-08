@@ -28,6 +28,7 @@
 
 	});
 	
+	// 장바구니 중복 체크 (detail.jsp)
 	function cartcheck(productcode) {
 		$.ajax({
 			url : '/web/cartcheck.do',
@@ -40,12 +41,6 @@
 				} else {
 					$("#cartamount").attr("disabled", false);
 					frm.submit();
-					/* var question = confirm("장바구니로 이동하시겠습니까?");
-					if (question) {
-						location.href = "cart.jsp"
-					} else {
-						location.href = "category.jsp"
-					} */
 				}
 			},
 			error : function(request, status) {
@@ -53,14 +48,6 @@
 			}
 		});
 	}
-	
-	/*
-	$("#orderButton").click(function() {
-		var frm = $("#frm").attr("action", "/web/order.do");
-		frm.submit();
-		$("#frm").attr("action", "/web/cartAdd.do");//다시 action을 원래로 되돌린다.			 
-	});
-	 */
 </script>
 </head>
 <body>

@@ -13,9 +13,9 @@
 		<a href="jalnagayo.jsp"><img class="category" alt="" src="bmImage/잘나가요.png" width="70px;"
 			height="30px;"
 			style="cursor: pointer; float: left; margin-left: 5%; margin-top: 1%;"></a>
-		<a href="bmlab.jsp"><img class="category" alt="" src="bmImage/리추로 연구소.png" width="90px;"
+		<!-- <a href="bmlab.jsp"><img class="category" alt="" src="bmImage/리추로 연구소.png" width="90px;"
 			height="30px;"
-			style="cursor: pointer; float: left; margin-left: 5%; margin-top: 1%;"></a>
+			style="cursor: pointer; float: left; margin-left: 5%; margin-top: 1%;"></a> -->
 		<div
 			style="float: right; width: 4%; background-color: white; margin-right: 14%; margin-top: 1%;">
 			<a href="search.jsp"><img alt="" src="bmImage/검색.png"
