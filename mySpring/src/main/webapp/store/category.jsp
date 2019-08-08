@@ -88,7 +88,7 @@
 			style="border-radius: 50%; width: 80px; margin-left: 1%; margin-bottom: 1%;">
 		<img id="category11" alt="" src="bmImage/cate10.png"
 			style="border-radius: 50%; width: 80px; margin-left: 1%; margin-bottom: 1%;">
-		<img id="category12" alt="" src="cbmImage/ate11.png"
+		<img id="category12" alt="" src="bmImage/cate11.png"
 			style="border-radius: 50%; width: 80px; margin-left: 1%; margin-bottom: 1%;">
 		<b style="margin-left: 5.5%;">전체상품</b> <b style="margin-left: 3%;">포장랩,백</b>
 		<b style="margin-left: 3%;">종이봉투</b> <b style="margin-left: 3%;">비닐봉투</b>

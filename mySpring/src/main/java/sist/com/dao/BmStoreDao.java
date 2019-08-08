@@ -87,4 +87,14 @@ public class BmStoreDao extends SqlSessionDaoSupport {
 		map.put("cartamount", cartamount);
 		this.getSqlSession().update("cartmodify", map);
 	}
+	
+	// 장바구니 목록 비우기
+	public void alldelete(String ownerno){
+		this.getSqlSession().delete("alldelete",ownerno);
+	}
+	
+	// 장바구니 목록 비우기
+		public void checkdelete(String productcode){
+			this.getSqlSession().delete("checkdelete",productcode);
+		}
 }

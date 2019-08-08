@@ -13,15 +13,15 @@
 		<a href="jalnagayo.jsp"><img class="category" alt="" src="bmImage/잘나가요.png" width="70px;"
 			height="30px;"
 			style="cursor: pointer; float: left; margin-left: 5%; margin-top: 1%;"></a>
-		<img class="category" alt="" src="bmImage/리추로 연구소.png" width="90px;"
+		<a href="bmlab.jsp"><img class="category" alt="" src="bmImage/리추로 연구소.png" width="90px;"
 			height="30px;"
-			style="cursor: pointer; float: left; margin-left: 5%; margin-top: 1%;">
+			style="cursor: pointer; float: left; margin-left: 5%; margin-top: 1%;"></a>
 		<div
 			style="float: right; width: 4%; background-color: white; margin-right: 14%; margin-top: 1%;">
-			<img alt="" src="bmImage/검색.png"
-				style="margin-left: 27%; margin-bottom: 8%; float: left;"> <b
+			<a href="search.jsp"><img alt="" src="bmImage/검색.png"
+				style="margin-left: 27%; margin-bottom: 8%; float: left;"></a> <a href="search.jsp"><b
 				class="basket"
-				style="color: gray; float: left; cursor: pointer; font-family: monospace; font-size: 12px;">상품검색</b>
+				style="color: gray; float: left; cursor: pointer; font-family: monospace; font-size: 12px;">상품검색</b></a>
 		</div>
 		<div
 			style="float: right; width: 4%; background-color: white; margin-right: 1%; margin-top: 1%;">
@@ -32,10 +32,10 @@
 		</div>
 		<div
 			style="float: right; width: 5%; background-color: white; margin-right: 1%; margin-top: 1%;">
-			<img alt="" src="bmImage/사장님.png"
-				style="margin-left: 32%; margin-bottom: 8%; float: left;"> <b
+			<a href="mypage.jsp"><img alt="" src="bmImage/사장님.png"
+				style="margin-left: 32%; margin-bottom: 8%; float: left;"></a> <a href="mypage.jsp"><b
 				class="basket"
-				style="color: gray; float: left; cursor: pointer; font-family: monospace; font-size: 12px;">치킨사장님</b>
+				style="color: gray; float: left; cursor: pointer; font-family: monospace; font-size: 12px;">치킨사장님</b></a>
 		</div>
 		
 	</div>

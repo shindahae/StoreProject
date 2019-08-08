@@ -96,7 +96,7 @@ public class BmStoreController {
 	@RequestMapping(value = "mainEvent.do")
 	public ModelAndView mainEvent(String category, ModelAndView mv) {
 		System.out.println("메인이벤트클릭");
-		String str="";
+		String str = "";
 		if (category.equals("category2")) {
 			str = "포장랩,백";
 		}
@@ -133,16 +133,16 @@ public class BmStoreController {
 		mv.setViewName("store/category");
 		mv.addObject("mainlist", dao.productSelectList(str));
 		return mv;
-		//System.out.println(str);
-		//return "store/category";
+		// System.out.println(str);
+		// return "store/category";
 	}
 
-	/*@RequestMapping(value = "clientproductInfo.do")
-	public String clientInfoProcess(int pk, Model model) {
-		model.addAttribute("cInfo", dao.selectClientInfo(pk));
-		return "cart/productInfo";
-	}*/
-	
+	/*
+	 * @RequestMapping(value = "clientproductInfo.do") public String
+	 * clientInfoProcess(int pk, Model model) { model.addAttribute("cInfo",
+	 * dao.selectClientInfo(pk)); return "cart/productInfo"; }
+	 */
+
 	// 깜짝세일 페이지에서 이벤트 테이블에 있는 데이터를 가져옴 (timesale.jsp)
 	@RequestMapping(value = "eventList.do")
 	public List<BmEventBean> eventList() {
@@ -328,6 +328,18 @@ public class BmStoreController {
 	@RequestMapping(value = "cartmodify.do")
 	public void cartmodify(int no, int cartamount) {
 		dao.cartmodify(no, cartamount);
+	}
+
+	// 장바구니 목록 비우기(cart.jsp)
+	@RequestMapping(value = "alldelete.do")
+	public void alldelete(String ownerno) {
+		dao.alldelete(ownerno);
+	}
+	
+	// 장바구니 선택 삭제(cart.jsp)
+	@RequestMapping(value = "checkdelete.do")
+	public void checkdelete(String productcode) {
+		dao.checkdelete(productcode);
 	}
 
 }

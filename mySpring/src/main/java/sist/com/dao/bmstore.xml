@@ -95,8 +95,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES(#{no},SYSDATE,#{ownerno},#{productcode},#{cartamount})
 	</insert>
 
-	<select id="cartcheck" parameterType="java.lang.String" resultType="int">
-		SELECT COUNT(*) FROM BMCART WHERE PRODUCTCODE IN #{productcode}
+	<select id="cartcheck" parameterType="java.lang.String"
+		resultType="int">
+		SELECT COUNT(*) FROM BMCART WHERE PRODUCTCODE IN
+		#{productcode}
 	</select>
 
 	<select id="cartList" resultType="bmcartlist">
@@ -116,4 +118,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE BMCART SET
 		CARTAMOUNT=#{cartamount} WHERE NO=#{no}
 	</update>
+
+	<delete id="alldelete" parameterType="java.lang.String">
+		DELETE FROM BMCART WHERE OWNERNO=#{ownerno}
+	</delete>
+	
+	<delete id="checkdelete" parameterType="java.lang.String">
+		DELETE FROM BMCART WHERE PRODUCTCODE=#{productcode}
+	</delete>
 </mapper>
