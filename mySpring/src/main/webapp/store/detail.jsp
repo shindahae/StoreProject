@@ -26,9 +26,18 @@
 			cartcheck(productcode);
 		});
 
+		$("#orderButton").click(function() {
+			var productcode = $("input[name=productcode]").val();
+			$("#cartamount").attr("disabled", false);
+			var cartamount = $("input[name=cartamount]").val();
+			$("#ownerno").attr("disabled", false);
+			var ownerno = $("input[name=ownerno]").val();
+			directorder(productcode, cartamount, ownerno);
+		});
+
 	});
-	
-	// 장바구니 중복 체크 (detail.jsp)
+
+	// 장바구니 중복 체크 후 담기
 	function cartcheck(productcode) {
 		$.ajax({
 			url : '/web/cartcheck.do',
@@ -48,6 +57,24 @@
 			}
 		});
 	}
+
+	// 바로 주문하기
+	function directorder(productcode, cartamount, ownerno) {
+		$.ajax({
+			url : '/web/directorder.do',
+			async : false,
+			data : 'productcode=' + productcode + "&cartamount=" + cartamount
+					+ "&ownerno=" + ownerno,
+			type : 'post',
+			success : function() {
+				alert('주문이 완료되었습니다');
+				location.href='/web/mypage.do';
+			},
+			error : function(request, status) {
+				alert("code=" + request.status);
+			}
+		});
+	}
 </script>
 </head>
 <body>
@@ -58,8 +85,8 @@
 			<div
 				style="float: left; margin-top: 4%; margin-left: 17.5%; width: 65%; background-color: white;">
 				<div style="float: left;">
-					<img alt="" src="bmImage/${info.productimage}.jpg"
-						width="400px" height="400px">
+					<img alt="" src="bmImage/${info.productimage}.jpg" width="400px"
+						height="400px">
 				</div>
 				<div
 					style="float: right; background-color: white; width: 45%; margin-top: 5%">

@@ -23,14 +23,14 @@
 								.each(
 										function(index, dom) {
 											temp += "<div style=\"float: left; width: 200px; height: 400px;margin-left: 7%;\">";
-											temp += "<a href=\"/web/detail.do?no="
-													+ dom.no
+											temp += "<a href=\"/web/detail.do?productcode="
+													+ dom.productcode
 													+ "\"><img alt=\"\" src=\"bmImage/"+dom.productimage+".jpg\" width=\"260px\" height=\"300px\"></a>";
 											temp += "<div style=\"width: 100%; background-color: white; margin-top: 2%;\">";
 											temp += "<b>" + dom.productname
 													+ "</b></div>"
 											temp += "<div style=\"width: 100%; margin-top: 2%; margin-bottom: 18%;\">";
-											temp += "<img alt=\"\" src=\"best.gif\">";
+											temp += "<img alt=\"\" src=\"bmImage/best.gif\">";
 											temp += "<font style=\"float: right; font-size:0.8em;\">"
 													+ dom.productunit
 													+ "</font><br>";
@@ -40,7 +40,7 @@
 										});
 						$("div#pdiv").html(temp);
 						ajaxSelectList(
-								'/web/mainSelectItem.do?category=chicken',
+								'/web/mainSelectItem.do',
 								'json');
 					},
 					error : function(e) {
@@ -61,8 +61,8 @@
 										function(index, dom) {
 											if (index == 0) {
 												temp += "<div style=\"margin-top: 5%; margin-left: 10%; width: 150px; height: 200px; float: left;\">";
-												temp += "<a href=\"/web/detail.do?no="
-														+ dom.no
+												temp += "<a href=\"/web/detail.do?productcode="
+														+ dom.productcode
 														+ "\"><img src=\"bmImage/"+dom.productimage+".jpg\" style=\"width: 150px; height: 150px;\"></a>";
 												temp += "<b style=\"color: white; font-size: 14px;\">"
 														+ dom.productname
@@ -74,7 +74,7 @@
 												temp += "<div style=\"margin-top: 5%; margin-right: 7%; width: 150px; height: 200px;float: right;\">";
 												temp += "<a href=\"/web/detail.do?no="
 														+ dom.no
-														+ "\"><img src=\"/web/bmImage/"+dom.productimage+".jpg\"	style=\"width: 150px; height: 150px;\"></a>";
+														+ "\"><img src=\"bmImage/"+dom.productimage+".jpg\"	style=\"width: 150px; height: 150px;\"></a>";
 												temp += "<b style=\"color: white; font-size: 15px;\">"
 														+ dom.productname
 														+ "</b><br>";
@@ -111,10 +111,10 @@
 		</div>
 		<div
 			style="margin-left: 5%; margin-top: 27%; width: 1136px; height: 100px; text-align: center; border-top: 1px solid #484848; border-bottom: 1px solid #484848;">
-			<b style="color: #484848; font-size: 27px; line-height: 100px">관련상품</b>
+			<b style="color: #484848; font-size: 27px; line-height: 100px">자주 구매한 상품</b>
 		</div>
 		<div id="pdiv"
-			style="float: left; width: 90%; margin-left: 0%; margin-top: 2%"></div>
+			style="float: left; width: 90%; margin-left: 2.5%; margin-top: 2%"></div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>

@@ -15,6 +15,7 @@ import sist.com.model.CardBean;
 import sist.com.model.ProductBean;*/
 import sist.com.vo.BmEventBean;
 import sist.com.vo.BmOrderBean;
+import sist.com.vo.BmOrderListBean;
 import sist.com.vo.BmProductBean;
 
 @Repository(value = "bmDao")
@@ -36,9 +37,9 @@ public class BmStoreDao extends SqlSessionDaoSupport {
 		return this.getSqlSession().selectList("productList");
 	}
 
-	// 메인에서 사장님 업종과 관련된 추천상품을 가져옴(주문내역에서 주문이 많은 상품 1,2위)
-	public List<BmProductBean> productSelectItem(String category) {
-		return this.getSqlSession().selectList("productSelectItem", category);
+	// 메인에서 이벤트 상품 추천
+	public List<BmProductBean> productSelectItem() {
+		return this.getSqlSession().selectList("productSelectItem");
 	}
 
 	// 카테고리 선택 시 해당하는 리스트를 가져옴
@@ -51,9 +52,9 @@ public class BmStoreDao extends SqlSessionDaoSupport {
 		return this.getSqlSession().selectOne("productDetail", productcode);
 	}
 
-	// 메인에 신상품/추천상품 등을 가져옴 (주문내역에서 주문이 많은 상품 1~20위까지)
-	public List<BmProductBean> mainList() {
-		return this.getSqlSession().selectList("mainList");
+	// 메인에 자주 구매한 상품
+	public List<BmProductBean> mainList(String ownerno) {
+		return this.getSqlSession().selectList("mainList", ownerno);
 	}
 
 	// 깜짝세일 페이지에서 이벤트 테이블에 있는 데이터를 가져옴
@@ -109,5 +110,20 @@ public class BmStoreDao extends SqlSessionDaoSupport {
 		for (int i = 0; i < list.size(); i++) {
 			this.getSqlSession().insert("checkorder", list.get(i));
 		}
+	}
+
+	// detail.jsp에서 바로 주문하기
+	public void directorder(BmOrderBean bean) {
+		this.getSqlSession().insert("checkorder", bean);
+	}
+	
+	// 주문내역 (mypage.jsp)
+	public List<BmOrderListBean> mypagelist(String ownerno){
+		return this.getSqlSession().selectList("mypagelist",ownerno);
+	}
+	
+	//// 장바구니 수량 (mypage.jsp)
+	public int cartrownum(String ownerno){
+		return this.getSqlSession().selectOne("cartrownum", ownerno);
 	}
 }

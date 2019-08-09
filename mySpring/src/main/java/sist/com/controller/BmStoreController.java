@@ -29,7 +29,9 @@ import sist.com.vo.BmCartBean;
 import sist.com.vo.BmCartListBean;
 import sist.com.vo.BmEventBean;
 import sist.com.vo.BmOrderBean;
+import sist.com.vo.BmOrderListBean;
 import sist.com.vo.BmProductBean;
+import twitter4j.HttpResponse;
 
 @RestController
 @SessionAttributes(value = { "info" })
@@ -37,11 +39,13 @@ public class BmStoreController {
 	@Resource(name = "bmDao")
 	private BmStoreDao dao;
 
-	// 메인에 신상품/추천상품 등을 가져옴 (주문내역에서 주문이 많은 상품 1~20위까지) (main.jsp)
-	// 쿼리 수정 필요
+	// 메인에 자주 구매한 상품 (main.jsp)
 	@RequestMapping(value = "mainList.do")
 	public List<BmProductBean> productMainList() {
-		List<BmProductBean> list = dao.mainList();
+		///////////////// 임의로 INSERT///////////////////////////
+		String ownerno = "TESTOWNER01";
+		////////////////////////////////////////////
+		List<BmProductBean> list = dao.mainList(ownerno);
 		for (int i = 0; i < list.size(); i++) {
 			String priceview = new String();
 			int price = list.get(i).getProductprice();
@@ -64,12 +68,10 @@ public class BmStoreController {
 		return list;
 	}
 
-	// 메인에서 사장님 업종과 관련된 추천상품을 가져옴(주문내역에서 주문이 많은 상품 1,2위) (main.jsp)
-	// 쿼리 수정 필요
+	// 메인에서 이벤트 상품 추천 (main.jsp)
 	@RequestMapping(value = "mainSelectItem.do")
-	public List<BmProductBean> productSelectItem(Model model, String category) {
-		category = "가공식품";
-		List<BmProductBean> list = dao.productSelectItem(category);
+	public List<BmProductBean> productSelectItem(Model model) {
+		List<BmProductBean> list = dao.productSelectItem();
 		for (int i = 0; i < list.size(); i++) {
 			String priceview = new String();
 			int price = list.get(i).getProductprice();
@@ -357,6 +359,30 @@ public class BmStoreController {
 			dao.checkdelete(cartbean.getProductcode());
 		}
 		dao.checkorder(orderlist);
-		
 	}
+
+	// 바로 주문하기(detail.jsp)
+	@RequestMapping(value = "directorder.do")
+	public void directorder(String productcode, int cartamount, String ownerno)
+			throws Exception {
+		BmOrderBean orderbean = new BmOrderBean();
+		orderbean.setOwnerno(ownerno);
+		orderbean.setProductcode(productcode);
+		orderbean.setOrderamount(cartamount);
+		dao.directorder(orderbean);
+	}
+	
+	// 주문내역 (mypage.jsp)
+	@RequestMapping(value="mypagelist.do")
+	public List<BmOrderListBean> mypagelist(String ownerno){
+		List<BmOrderListBean> list=dao.mypagelist(ownerno);
+		return list;
+	}
+	
+	// 장바구니 수량 (mypage.jsp)
+		@RequestMapping(value = "cartrownum.do")
+		public int cartrownum(String ownerno) {
+			int cartrow=dao.cartrownum(ownerno);
+			return cartrow;
+		}
 }

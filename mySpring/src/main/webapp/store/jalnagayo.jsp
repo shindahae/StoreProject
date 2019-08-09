@@ -27,8 +27,8 @@ function ajaxList(url, dataType) {
 							.each(
 									function(index, dom) {
 										temp += "<div style=\"float: left; width: 200px; height: 400px;margin-left: 7%;\">";
-										temp += "<a href=\"/web/detail.do?no="
-												+ dom.no
+										temp += "<a href=\"/web/detail.do?productcode="
+												+ dom.productcode
 												+ "\"><img alt=\"\" src=\"bmImage/"+dom.productimage+".jpg\" width=\"260px\" height=\"300px\"></a>";
 										temp += "<div style=\"width: 100%; background-color: white; margin-top: 2%;\">";
 										temp += "<b>" + dom.productname

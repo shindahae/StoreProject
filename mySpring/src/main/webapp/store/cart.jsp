@@ -142,7 +142,7 @@
 					dataType:'text',
 					data:{valueArrTest:checkList},
 					success : function() {
-						//location.href='/web/mypage.do?';
+						location.href='mypage.jsp';
 					},
 					error : function(request, status) {
 						alert("code=" + request.status);
