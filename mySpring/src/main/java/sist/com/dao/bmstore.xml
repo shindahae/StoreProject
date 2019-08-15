@@ -180,4 +180,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="cartrownum" parameterType="java.lang.String" resultType="int">
 	SELECT COUNT(PRODUCTCODE) FROM BMCART WHERE OWNERNO=#{ownerno}
 	</select>
+	
+	<select id="searchList" parameterType="HashMap" resultType="bmproduct">
+	<include refid="plist"></include>
+	WHERE ${select} LIKE '%${searchdata}%'
+	</select>
 </mapper>

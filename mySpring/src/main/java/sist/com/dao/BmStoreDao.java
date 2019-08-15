@@ -122,8 +122,16 @@ public class BmStoreDao extends SqlSessionDaoSupport {
 		return this.getSqlSession().selectList("mypagelist",ownerno);
 	}
 	
-	//// 장바구니 수량 (mypage.jsp)
+	// 장바구니 수량 (mypage.jsp)
 	public int cartrownum(String ownerno){
 		return this.getSqlSession().selectOne("cartrownum", ownerno);
 	}
+	
+	// 검색 (search.jsp)
+		public List<BmProductBean> searchList(String select, String searchdata) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("select", select);
+			map.put("searchdata", searchdata);
+			return this.getSqlSession().selectList("searchList", map);
+		}
 }

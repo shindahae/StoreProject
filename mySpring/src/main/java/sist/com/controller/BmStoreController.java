@@ -363,26 +363,51 @@ public class BmStoreController {
 
 	// 바로 주문하기(detail.jsp)
 	@RequestMapping(value = "directorder.do")
-	public void directorder(String productcode, int cartamount, String ownerno)
-			throws Exception {
+	public void directorder(String productcode, int cartamount, String ownerno) throws Exception {
 		BmOrderBean orderbean = new BmOrderBean();
 		orderbean.setOwnerno(ownerno);
 		orderbean.setProductcode(productcode);
 		orderbean.setOrderamount(cartamount);
 		dao.directorder(orderbean);
 	}
-	
+
 	// 주문내역 (mypage.jsp)
-	@RequestMapping(value="mypagelist.do")
-	public List<BmOrderListBean> mypagelist(String ownerno){
-		List<BmOrderListBean> list=dao.mypagelist(ownerno);
+	@RequestMapping(value = "mypagelist.do")
+	public List<BmOrderListBean> mypagelist(String ownerno) {
+		List<BmOrderListBean> list = dao.mypagelist(ownerno);
 		return list;
 	}
-	
+
 	// 장바구니 수량 (mypage.jsp)
-		@RequestMapping(value = "cartrownum.do")
-		public int cartrownum(String ownerno) {
-			int cartrow=dao.cartrownum(ownerno);
-			return cartrow;
+	@RequestMapping(value = "cartrownum.do")
+	public int cartrownum(String ownerno) {
+		int cartrow = dao.cartrownum(ownerno);
+		return cartrow;
+	}
+
+	// 검색 (search.jsp)
+	@RequestMapping(value = "search.do", produces="application/json;charset=utf8")
+	public List<BmProductBean> search(String select, String searchdata) {
+		List<BmProductBean> list = dao.searchList(select, searchdata);
+		for (int i = 0; i < list.size(); i++) {
+			String priceview = new String();
+			int price = list.get(i).getProductprice();
+			if (price != 0) {
+				StringBuffer a = new StringBuffer();
+				a.append(price);
+				if (a.length() > 3) {
+					for (int k = a.length() - 1; k >= 0; k--) {
+						if (k % 3 == 0) {
+							a.insert(a.length() - k, ",");
+						}
+					}
+				}
+				a.deleteCharAt(a.length() - 1);
+				a.append("원");
+				priceview = a.toString();
+			}
+			list.get(i).setPriceView(priceview);
 		}
+		return list;
+	}
 }
